@@ -1,0 +1,41 @@
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://bfhc7s8sq1dnk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_42i7q"]
+bg_color = Color(0.291796, 0.293888, 0.384329, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_124i3"]
+bg_color = Color(0.137468, 0.138587, 0.191005, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y3s6o"]
+bg_color = Color(0.506112, 0.509751, 0.625894, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mbugv"]
+bg_color = Color(1, 0.1597, 0.819732, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r3wvx"]
+bg_color = Color(0.290196, 0.294118, 0.384314, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kl85h"]
+bg_color = Color(0.290196, 0.294118, 0.384314, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a4pq7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ehl6v"]
+bg_color = Color(0.137255, 0.137255, 0.192157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6cpv8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85phw"]
+bg_color = Color(0, 0, 0, 0.666667)
+
+[resource]
+Button/styles/hover = SubResource("StyleBoxFlat_42i7q")
+Button/styles/normal = SubResource("StyleBoxFlat_124i3")
+Button/styles/pressed = SubResource("StyleBoxFlat_y3s6o")
+CheckButton/styles/disabled = SubResource("StyleBoxFlat_mbugv")
+CheckButton/styles/focus = SubResource("StyleBoxFlat_r3wvx")
+CheckButton/styles/hover = SubResource("StyleBoxFlat_kl85h")
+CheckButton/styles/hover_pressed = SubResource("StyleBoxFlat_a4pq7")
+CheckButton/styles/normal = SubResource("StyleBoxFlat_ehl6v")
+CheckButton/styles/pressed = SubResource("StyleBoxFlat_6cpv8")
+Panel/styles/panel = SubResource("StyleBoxFlat_85phw")

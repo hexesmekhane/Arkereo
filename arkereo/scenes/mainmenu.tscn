@@ -1,0 +1,124 @@
+[gd_scene load_steps=4 format=3 uid="uid://di081fnsmrxfy"]
+
+[ext_resource type="Theme" uid="uid://bfhc7s8sq1dnk" path="res://res/new_theme.tres" id="1_74gam"]
+[ext_resource type="Script" path="res://scripts/mainmenu.gd" id="2_l8sld"]
+[ext_resource type="AudioStream" uid="uid://chxodxnui54pt" path="res://sfx/click.wav" id="3_ohnu4"]
+
+[node name="mainmenu" type="Control" node_paths=PackedStringArray("startgame", "settings", "quit", "settingsreturn", "settingsmute", "click_sfx")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_74gam")
+script = ExtResource("2_l8sld")
+startgame = NodePath("background/startgame")
+settings = NodePath("background/settings")
+quit = NodePath("background/quit")
+settingsreturn = NodePath("background/settingsreturn")
+settingsmute = NodePath("background/settingsmute")
+click_sfx = NodePath("Click")
+
+[node name="background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="startgame" type="Button" parent="background"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.0
+offset_top = -99.0
+offset_right = 99.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_74gam")
+text = "Start Game"
+
+[node name="settings" type="Button" parent="background"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.0
+offset_top = -24.0
+offset_right = 99.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_74gam")
+text = "Settings"
+
+[node name="quit" type="Button" parent="background"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.0
+offset_top = 51.0
+offset_right = 99.0
+offset_bottom = 101.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_74gam")
+text = "Quit"
+
+[node name="settingsreturn" type="Button" parent="background"]
+visible = false
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.0
+offset_top = -64.0
+offset_right = 99.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_74gam")
+text = "Return"
+
+[node name="settingsmute" type="CheckButton" parent="background"]
+visible = false
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.0
+offset_top = 16.0
+offset_right = 99.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_74gam")
+text = " Mute"
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ohnu4")
+
+[connection signal="pressed" from="background/startgame" to="." method="_on_startgame_pressed"]
+[connection signal="pressed" from="background/settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="background/quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="background/settingsreturn" to="." method="_on_settingsreturn_pressed"]
+[connection signal="pressed" from="background/settingsmute" to="." method="_on_settingsmute_pressed"]

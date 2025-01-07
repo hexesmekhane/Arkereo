@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://dski0er57223"]
+
+[ext_resource type="Script" path="res://scripts/bullet.gd" id="1_gp7hl"]
+[ext_resource type="Texture2D" uid="uid://dom7qbr8o8d35" path="res://sprites/placeholder/devcircle.png" id="2_lkhry"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ql77t"]
+radius = 26.0768
+
+[sub_resource type="Curve" id="Curve_72ivg"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.251397, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="bullet" type="Area2D" node_paths=PackedStringArray("line")]
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_gp7hl")
+line = NodePath("trail")
+
+[node name="collider" type="CollisionShape2D" parent="."]
+scale = Vector2(0.3, 0.3)
+shape = SubResource("CircleShape2D_ql77t")
+
+[node name="sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_lkhry")
+
+[node name="bulletcull" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="trail" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 0)
+width = 15.0
+width_curve = SubResource("Curve_72ivg")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="bulletcull" to="." method="_on_bulletcull_timeout"]
