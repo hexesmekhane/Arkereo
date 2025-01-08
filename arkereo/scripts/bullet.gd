@@ -26,7 +26,7 @@ func destroy():
 func _on_body_entered(col):
 	if col.is_in_group("enemy"):
 		# knockback
-		col.linear_velocity = Vector2(col.linear_velocity + Vector2(knockback, 0).rotated(rot))
+		col.linear_velocity = Vector2(col.linear_velocity + Vector2(knockback * col.knockback_multiplier, 0).rotated(rot))
 		
 		# damage
 		Global.find(col, CollisionShape2D).take_damage(damage)

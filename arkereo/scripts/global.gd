@@ -5,7 +5,7 @@ var pausemenu
 var debug
 
 var paused : bool
-var healorb_chance : int = 5
+var healorb_chance : int = 2
 
 # being a script outside of the scene tree we can
 # handle pause inputs regardless of timescale

@@ -2,8 +2,7 @@ extends Panel
 
 @export_group("gui")
 @export var hide: Array[Control]
-@export var forcehide: Control
-
+var debugopened: bool
 var wasopen
 
 @export_group("buttons")
@@ -21,10 +20,21 @@ func _ready():
 	Global.pausemenu = self
 
 func pausetoggle(paused : bool):
+	# hide the pause menu and gui
 	visible = !visible
 	for i in hide.size():
-		hide[i].visible = paused
-		
+		hide[i].visible = !paused
+	
+	# handle debug menu visibility
+	if paused and Global.debug.visible:
+		debugopened = true
+		Global.debug.visible = !paused
+	elif paused and !Global.debug.visible:
+		debugopened = false
+		Global.debug.visible = !paused
+	elif !paused:
+		Global.debug.visible = debugopened
+	
 	Engine.time_scale = !paused
 	
 	show_pause_base(paused)

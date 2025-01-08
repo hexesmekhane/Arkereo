@@ -1,6 +1,6 @@
 extends Marker2D
 
-@export var Enemy: PackedScene
+@export var enemy: Array[PackedScene]
 @export var timer_randomization: bool = false
 
 # spawn interval and randimzer multiplier
@@ -22,7 +22,6 @@ func _ready():
 	can_spawn = playerinradius
 	if timer_randomization == true:
 		actual_spawn_interval = randf_range(spawn_interval, spawn_interval * randomizer)
-
 func _process(delta):
 	timer += delta
 	# handle spawning
@@ -30,17 +29,33 @@ func _process(delta):
 		spawn()
 
 func spawn():
-	spawn_interval = get_node("/root/main").spawn_rate
-	if can_spawn == true:
-		# restart spawn timer
-		timer = 0
-		
-		# spawn the enemy
-		var temp = Enemy.instantiate()
-		temp.collider.health += get_node("/root/main").enemy_health
-		temp.speed += get_node("/root/main").enemy_speed
-		temp.global_position = global_position + Vector2(randf_range(-2, 2), randf_range(-2, 2))
-		get_parent().add_sibling(temp)
+	var ranum = randi_range(0, get_node("/root/main").enemy_spawn_scale)
+	
+	if ranum <= 1:
+		spawn_interval = get_node("/root/main").spawn_rate
+		if can_spawn == true:
+			# restart spawn timer
+			timer = 0
+			
+			# spawn the enemy
+			var temp = enemy[1].instantiate()
+			temp.collider.health += get_node("/root/main").enemy_health * 5
+			temp.speed += get_node("/root/main").enemy_speed
+			temp.global_position = global_position + Vector2(randf_range(-2, 2), randf_range(-2, 2))
+			get_parent().add_sibling(temp)
+	
+	else: 
+		spawn_interval = get_node("/root/main").spawn_rate
+		if can_spawn == true:
+			# restart spawn timer
+			timer = 0
+			
+			# spawn the enemy
+			var temp = enemy[0].instantiate()
+			temp.collider.health += get_node("/root/main").enemy_health
+			temp.speed += get_node("/root/main").enemy_speed
+			temp.global_position = global_position + Vector2(randf_range(-2, 2), randf_range(-2, 2))
+			get_parent().add_sibling(temp)
 
 # handle can_spawn
 func _on_area_2d_body_entered(col):

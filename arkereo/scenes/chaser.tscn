@@ -2,19 +2,19 @@
 
 [ext_resource type="Script" path="res://scripts/chaserai.gd" id="1_12srg"]
 [ext_resource type="Script" path="res://scripts/enemyhealth.gd" id="2_gfme4"]
-[ext_resource type="Texture2D" uid="uid://dom7qbr8o8d35" path="res://sprites/placeholder/devcircle.png" id="3_5kntm"]
 [ext_resource type="PackedScene" uid="uid://by8tiqwej5kv4" path="res://scenes/xporb.tscn" id="3_6xeyu"]
 [ext_resource type="PackedScene" uid="uid://xdcrhwif00ic" path="res://scenes/healorb.tscn" id="4_lmj68"]
 [ext_resource type="AudioStream" uid="uid://dueexul4gyaxb" path="res://sfx/hitHurt.wav" id="5_h2jo1"]
+[ext_resource type="Texture2D" uid="uid://dom7qbr8o8d35" path="res://sprites/placeholder/devcircle.png" id="5_qot11"]
 [ext_resource type="AudioStream" uid="uid://2bad3010lerm" path="res://sfx/explosion(2).wav" id="6_gs4tu"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_qc6bh"]
-radius = 26.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_8bbml"]
+radius = 26.0192
 
 [node name="chaser" type="RigidBody2D" node_paths=PackedStringArray("collider", "navigation_agent") groups=["enemy"]]
 position = Vector2(328, 235)
 collision_layer = 4
-collision_mask = 11
+collision_mask = 75
 gravity_scale = 0.0
 continuous_cd = 1
 contact_monitor = true
@@ -25,7 +25,7 @@ collider = NodePath("collider")
 navigation_agent = NodePath("NavigationAgent2D")
 
 [node name="collider" type="CollisionShape2D" parent="." node_paths=PackedStringArray("timer", "hit_sfx", "die_sfx", "sprite")]
-shape = SubResource("CircleShape2D_qc6bh")
+shape = SubResource("CircleShape2D_8bbml")
 script = ExtResource("2_gfme4")
 xporb = ExtResource("3_6xeyu")
 healorb = ExtResource("4_lmj68")
@@ -39,7 +39,7 @@ wait_time = 0.2
 one_shot = true
 
 [node name="sprite" type="Sprite2D" parent="."]
-texture = ExtResource("3_5kntm")
+texture = ExtResource("5_qot11")
 
 [node name="hit" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_h2jo1")

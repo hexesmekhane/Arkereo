@@ -83,7 +83,7 @@ func upgradegen():
 				3:
 					cam.update(option, str(i + 1) + ": +20% firerate")
 				4:
-					cam.update(option, str(i + 1) + ": +20 damage")
+					cam.update(option, str(i + 1) + ": +20% damage")
 				5:
 					cam.update(option, str(i + 1) + ": +25 max health")
 				6:
@@ -91,9 +91,9 @@ func upgradegen():
 				7:
 					cam.update(option, str(i + 1) + ": -20 spread")
 				8:
-					cam.update(option, str(i + 1) + ": +50 knockback")
+					cam.update(option, str(i + 1) + ": +100 knockback")
 				9:
-					cam.update(option, str(i + 1) + ": +5% healorb drop chance")
+					cam.update(option, str(i + 1) + ": +2% healorb drop chance")
 func upgrade(idx):
 	upgrades += 1
 	match upgrade_idx[idx]:
@@ -105,11 +105,11 @@ func upgrade(idx):
 			if spread_debt >= -10:
 				gun.spread += 10 + spread_debt
 			spread_debt - 10
-			gun.damage *= 0.75
+			gun.damage *= 0.8
 		3:
 			gun.fire_rate *= 0.8
 		4:
-			gun.damage += 20
+			gun.damage *= 1.2
 		5:
 			health.max_health += 25
 			health.heal(25)
@@ -121,9 +121,9 @@ func upgrade(idx):
 				spread_debt = gun.spread
 				gun.spread = 0
 		8:
-			gun.knockback *= 2
+			gun.knockback += 100
 		9:
-			Global.healorb_chance += 5
+			Global.healorb_chance += 2
 	upgrading = false
 	cam.update("option1", " ")
 	cam.update("option2", " ")

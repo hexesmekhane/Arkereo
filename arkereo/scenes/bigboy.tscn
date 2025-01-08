@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://ct0x7t0ccdh3n"]
+
+[ext_resource type="Script" path="res://scripts/chaserai.gd" id="1_mf408"]
+[ext_resource type="Script" path="res://scripts/enemyhealth.gd" id="2_tetwo"]
+[ext_resource type="PackedScene" uid="uid://by8tiqwej5kv4" path="res://scenes/xporb.tscn" id="3_awsv8"]
+[ext_resource type="PackedScene" uid="uid://xdcrhwif00ic" path="res://scenes/healorb.tscn" id="4_8n1wr"]
+[ext_resource type="Texture2D" uid="uid://dom7qbr8o8d35" path="res://sprites/placeholder/devcircle.png" id="5_qpc7f"]
+[ext_resource type="AudioStream" uid="uid://dueexul4gyaxb" path="res://sfx/hitHurt.wav" id="6_a4ido"]
+[ext_resource type="AudioStream" uid="uid://2bad3010lerm" path="res://sfx/explosion(2).wav" id="7_6umk3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7g0oj"]
+radius = 51.0098
+
+[node name="bigboy" type="RigidBody2D" node_paths=PackedStringArray("collider", "navigation_agent") groups=["enemy"]]
+collision_layer = 64
+collision_mask = 75
+gravity_scale = 0.0
+continuous_cd = 1
+contact_monitor = true
+max_contacts_reported = 99
+script = ExtResource("1_mf408")
+speed = 100
+knockback_multiplier = 0.25
+collider = NodePath("collider")
+navigation_agent = NodePath("NavigationAgent2D")
+
+[node name="collider" type="CollisionShape2D" parent="." node_paths=PackedStringArray("timer", "hit_sfx", "die_sfx", "sprite")]
+shape = SubResource("CircleShape2D_7g0oj")
+script = ExtResource("2_tetwo")
+xporb = ExtResource("3_awsv8")
+healorb = ExtResource("4_8n1wr")
+timer = NodePath("timer")
+hit_sfx = NodePath("../hit")
+die_sfx = NodePath("../die")
+sprite = NodePath("../sprite")
+health = 1000
+xporb_count = 5
+
+[node name="timer" type="Timer" parent="collider"]
+wait_time = 0.2
+one_shot = true
+
+[node name="sprite" type="Sprite2D" parent="."]
+modulate = Color(0, 0.588235, 0, 1)
+scale = Vector2(2, 2)
+texture = ExtResource("5_qpc7f")
+
+[node name="hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_a4ido")
+
+[node name="die" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_6umk3")
+volume_db = -10.0
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="collider/timer" to="collider" method="_on_timer_timeout"]

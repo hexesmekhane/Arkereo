@@ -5,12 +5,12 @@ extends CollisionShape2D
 @export var invuln_frames = 1 # 1 = 1 second
 
 # dont touch
-var maxhealth
+var max_health
 var tick = 0
 
 func _ready():
 	# set maxhealth to our default health
-	maxhealth = health
+	max_health = health
 
 func _process(delta):
 	tick -= delta
@@ -20,15 +20,15 @@ func _process(delta):
 		die()
 	
 	# add maxhealth stat to debug menu
-	Global.debug.add_property("Maximum Health", maxhealth, 9)
+	Global.debug.add_property("Maximum Health", max_health, 9)
 
 func heal(healing):
 	health += healing
 	
 	# if our health is OVER our maximum health,
 	# then we set our health TO maximum health
-	if health > maxhealth:
-		health = maxhealth
+	if health > max_health:
+		health = max_health
 	
 	# update the gui
 	get_node("../../camera").update("health", "HP: " + str(health))

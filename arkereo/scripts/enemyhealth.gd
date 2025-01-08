@@ -7,6 +7,7 @@ extends CollisionShape2D
 @export var hit_sfx: AudioStreamPlayer
 @export var die_sfx: AudioStreamPlayer
 @export var sprite: Sprite2D
+
 # stats
 @export var health = 100
 @export var xporb_count = 1

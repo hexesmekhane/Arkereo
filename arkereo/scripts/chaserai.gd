@@ -8,7 +8,7 @@ var dead: bool
 # stats
 @export var speed = 200
 @export var damage = 25
-
+@export var knockback_multiplier = 1.0
 @export var collider: CollisionShape2D
 @export var navigation_agent: NavigationAgent2D
 
@@ -23,7 +23,7 @@ func set_movement_target(movement_target: Vector2):
 
 func _physics_process(_delta):
 	# there is a brief period where there is no collision...
-	# and no sprite, we dont want anything to happen in this period	
+	# and no sprite, we dont want anything to happen in this period
 	if dead:
 		return
 	

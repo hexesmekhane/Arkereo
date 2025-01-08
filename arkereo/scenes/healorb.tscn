@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://xdcrhwif00ic"]
 
 [ext_resource type="Script" path="res://scripts/healorb.gd" id="1_0l8md"]
-[ext_resource type="Texture2D" uid="uid://dom7qbr8o8d35" path="res://sprites/placeholder/devcircle.png" id="2_7n7v5"]
+[ext_resource type="Texture2D" uid="uid://dom7qbr8o8d35" path="res://sprites/placeholder/devcircle.png" id="2_y0t2x"]
 [ext_resource type="AudioStream" uid="uid://blfvjxo7uyivq" path="res://sfx/heal.wav" id="3_aw08l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eib1x"]
-radius = 125.0
+radius = 75.0
 
 [node name="healorb" type="RigidBody2D" node_paths=PackedStringArray("collider", "sprite", "sfx") groups=["player"]]
 collision_layer = 16
@@ -25,7 +25,7 @@ shape = SubResource("CircleShape2D_eib1x")
 [node name="sprite" type="Sprite2D" parent="."]
 modulate = Color(1, 0.14902, 0.14902, 1)
 scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_7n7v5")
+texture = ExtResource("2_y0t2x")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_aw08l")
